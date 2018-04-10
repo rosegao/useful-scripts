@@ -15,17 +15,8 @@ export PATH=~/anaconda3/bin:$PATH
 conda install -y bcolz
 conda upgrade -y --all
 
-### Start Jupyter notebook
-# create config file
+### Config and start Jupyter notebook
 jupyter notebook --generate-config
-
-# create certs for https
-mkdir certs
-cd certs
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem
-
-cd ~
-echo "c.NotebookApp.certfile = u'~/certs/mycert.pem'" >> ~/.jupyter/jupyter_notebook_config.py
 echo "c.NotebookApp.ip = '*'" >> $HOME/.jupyter/jupyter_notebook_config.py
 echo "c.NotebookApp.open_browser = False" >> $HOME/.jupyter/jupyter_notebook_config.py
 echo "c.NotebookApp.port = 8888" >> $HOME/.jupyter/jupyter_notebook_config.py
